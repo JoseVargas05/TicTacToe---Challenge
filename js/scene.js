@@ -6,16 +6,16 @@
 
     //VARIABLES FOR TEXTURE INICIALIZER AND ELEMENT STATUS
     let textureLoader = new THREE.TextureLoader();
-    let tex_fire = textureLoader.load("../img/fire.png");
-    let tex_ice = textureLoader.load("../img/ice.png");
-    let tex_hidde = textureLoader.load("../img/hidde.png");
+    let tex_fire = textureLoader.load("./img/fire.png");
+    let tex_ice = textureLoader.load("./img/ice.png");
+    let tex_hidde = textureLoader.load("./img/hidde.png");
 
     let countPlay = 0;
     const tablero = []; 
 
     //EVENT CLICK
     window.addEventListener('click', onDocumentMouseDown, false);
-    
+
     let raycaster = new THREE.Raycaster();
     let mouse = new THREE.Vector2();
     let INTERSECTED;

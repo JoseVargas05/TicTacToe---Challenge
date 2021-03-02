@@ -2,7 +2,7 @@
     //CAT ANIMATION
     let animation = bodymovin.loadAnimation({
         container: document.getElementById('cat'),
-        path: '../json/cat.json',
+        path: './json/cat.json',
         renderer: 'svg', 
         loop: true,
         autoplay: true,
@@ -10,7 +10,7 @@
 
     let animation2 = bodymovin.loadAnimation({
         container: document.getElementById('cat2'),
-        path: '../json/cat2.json',
+        path: './json/cat2.json',
         renderer: 'svg', 
         loop: true,
         autoplay: true,
