@@ -11,11 +11,12 @@
     let tex_hidde = textureLoader.load("./img/hidde.png");
 
     let countPlay = 0;
-    const tablero = []; 
+    const tablero = [];
+    let end = false;
 
     //EVENT CLICK
     window.addEventListener('click', onDocumentMouseDown, false);
-
+    
     let raycaster = new THREE.Raycaster();
     let mouse = new THREE.Vector2();
     let INTERSECTED;
@@ -172,27 +173,30 @@
                 intersects[ 0 ].object.name = "ice"
                 turn = 0;
                 }
-                let ganador = isWinner();
-                if(ganador != false){ 
+                    if(end == false){
+                        let ganador = isWinner();
+                        if(ganador != false){ 
+                            const paragraph = document.getElementById("nameW");
+                            const text = document.createTextNode(ganador);
+                            const ctr_winner = document.getElementById('winner');
+                            const ctr_scene = document.getElementById('ctr_scene');
+                            ctr_scene.classList.remove("open");
+                            ctr_winner.classList.add("open");
+                            paragraph.appendChild(text);
+                            end = true;
+                        }else if(countPlay == 9){
+                            const paragraph = document.getElementById("nameW");
+                            const text2 = document.createTextNode("empate");
+                            const ctr_winner = document.getElementById('winner');
+                            const ctr_scene = document.getElementById('ctr_scene');
+                            ctr_scene.classList.remove("open");
+                            ctr_winner.classList.add("open");
+                            paragraph.appendChild(text2);
+                            end = true;
+                       }
+                    }
                     
-                    const paragraph = document.getElementById("nameW");
-                    const text = document.createTextNode(ganador);
-                    const ctr_winner = document.getElementById('winner');
-                    const ctr_scene = document.getElementById('ctr_scene');
-                    ctr_scene.classList.remove("open");
-                    ctr_winner.classList.add("open");
-                    paragraph.appendChild(text);
-                }
-               
-               if(countPlay == 9){
-                const paragraph = document.getElementById("nameW");
-                    const text = document.createTextNode("empate");
-                    const ctr_winner = document.getElementById('winner');
-                    const ctr_scene = document.getElementById('ctr_scene');
-                    ctr_scene.classList.remove("open");
-                    ctr_winner.classList.add("open");
-                    paragraph.appendChild(text);
-               }
+                
             }
         }
     }
