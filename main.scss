@@ -1,0 +1,244 @@
+$base-duration: 200ms;
+
+// Colors
+$color-1: #E91E63;
+$color-2: #03A9F4;
+$color-3: #2ecc71;
+
+$white:#ffff;
+$black:#000;
+
+@font-face {
+    font-family: 'RussoOne Regular';
+    src: local('RussoOne Regular'), local('RussoOne-Regular'),
+        url('../fonts/RussoOne-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: $black;
+    overflow-x: hidden;
+}
+.main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .content{
+        display: flex;
+        flex-direction: column;
+        .title{
+            display: flex;
+            flex-direction: row;
+            .txt:nth-child(1){
+                &:hover{
+                    &:before, &:after{
+                        content: "Tic";
+                    }
+                }
+            }
+            .txt:nth-child(2){
+                &:hover{
+                    &:before, &:after{
+                        content: "Tac";
+                    }
+                }
+            }
+            .txt:nth-child(3){
+                &:hover{
+                    &:before, &:after{
+                        content: "Toe";
+                    }
+                }
+            }
+            .txt:nth-child(4){
+                &:hover{
+                    &:before, &:after{
+                        content: ".";
+                    }
+                }
+            }
+            .txt{
+                font-family: RussoOne Regular;
+                color: $white;
+                font-size: 10rem;
+                margin-left:2px;
+                margin-right: 2px;
+                outline: none;
+                position: relative;
+                &:hover {
+                    &:before, &:after{
+                        box-sizing: border-box;
+                        outline: none;
+                        position: absolute;
+                        transform: translate(-49%,-49%);
+                        z-index: -1;
+                    }
+                    &:before {
+                      top: 49.5%;
+                      left: 49.5%;
+                      color: rgba($color-1,0.8);
+                      animation: distort1 $base-duration linear infinite;
+                    }
+                
+                    &:after {
+                      top: 50.5%;
+                      left: 50.5%;
+                      color: rgba($color-2,0.8);
+                      animation: distort2 $base-duration linear infinite;
+                    }
+                  }
+                  @keyframes distort1 {
+                    0%    { top: 49.5%; left: 49.5%; }
+                    12.5% { top: 49.5%; left: 50%; }
+                    25%   { top: 49.5%; left: 50.5%; }
+                    37.5% { top: 50%; left: 50.5%; }
+                    50%   { top: 50.5%; left: 50.5%; }
+                    62.5% { top: 50.5%; left: 50%; }
+                    75%   { top: 50.5%; left: 49.5%; }
+                    87.5% { top: 50%; left: 49.5%; }
+                    100%  { top: 49.5%; left: 49.5%; }
+                  }
+                  
+                  @keyframes distort2 {
+                    0%    { top: 50.5%; left: 50.5%; }
+                    12.5% { top: 50%; left: 50.5%; }
+                    25%   { top: 49.5%; left: 50.5%; }
+                    37.5% { top: 49.5%; left: 50%; }
+                    50%   { top: 49.5%; left: 49.5%; }
+                    62.5% { top: 50%; left: 49.5%; }
+                    75%   { top: 50.5%; left: 49.5%; }
+                    87.5% { top: 50.5%; left: 50%; }
+                    100%  { top: 50.5%; left: 50.5%; }
+                  }
+            }
+            
+        }
+
+        .btn_sart{
+            background-color: transparent;
+            border: none;
+            color: $white;
+            font-family: RussoOne Regular;
+            outline: none;
+            padding: 12px 40px 10px;
+            position: relative;
+            font-size: 1.3rem;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            &:before,
+            &:after {
+                border: 0 solid transparent;
+                transition: all 0.3s;
+                content: '';
+                height: 0;
+                position: absolute;
+                width: 0px;
+            }
+            &:before{
+                border-top: 2px solid $white;
+                right: 0;
+                top: -4px;
+            }
+            &:after{
+                border-bottom: 2px solid $white;
+                bottom: -4px;
+                left: 0;
+            }
+            &:hover{
+                cursor: pointer;
+                &:before,
+                &:after {
+                    width: 100%;
+                }
+            }
+            
+        }
+        
+    }
+    #cat{
+        margin-left: -75px;
+        margin-top: -16px;
+        pointer-events: none;
+    }
+    #ctr_scene{
+        opacity: 0;
+        transition: 1s;
+        transition-timing-function: ease-in;
+        pointer-events: none;
+    }
+    canvas { 
+        width: 100%; 
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px; 
+        pointer-events: none;
+    }
+    .close{
+        transition: 1s;
+        transition-timing-function: ease-in;
+        opacity: 0;
+        transform: translate( -50%, -50%, -50%);
+        pointer-events: none;
+     }
+     .open{
+        transition: 1s;
+        transition-timing-function: ease-in;
+        opacity: 1 !important;
+        pointer-events: all;
+        canvas{
+            pointer-events: all;
+        }
+        #cat2{
+            pointer-events: all;
+            margin-top: -50px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+     }
+     #winner{
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: 2;
+         width: 100%;
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         background-color: $black;
+         transition: 1s;
+         opacity: 0;
+         pointer-events: none;
+         .txt_w{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: RussoOne Regular;
+            color: $white;
+            text-transform: uppercase;
+            font-size: 5rem;
+            margin-left:2px;
+            margin-right: 2px;
+            outline: none;
+            position: relative;
+         }
+     }
+
+      
+} 
+
+
+  
+  
